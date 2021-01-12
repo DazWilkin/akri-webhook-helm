@@ -4,11 +4,11 @@ kind: ValidatingWebhookConfiguration
 metadata:
   name: {{ .Values.webhook.name }}
 webhooks:
-  - name: {{ .Values.webhook.name }}.default.svc
+  - name: {{ .Values.webhook.name }}.{{ .Release.Namespace }}.svc
     clientConfig:
       service:
         name: {{ .Values.webhook.name }}
-        namespace: default
+        namespace: {{ .Release.Namespace }}
         port: 443
         path: "/validate"
       caBundle: {{ required "please rerun helm install" .Values.webhook.caBundle }}
