@@ -1,0 +1,29 @@
+{{- if .Values.webhook.enabled }}
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingWebhookConfiguration
+metadata:
+  name: {{- .Values.webhook.name -}}
+webhooks:
+  - name: {{- .Values.webhook.name -}}.default.svc
+    clientConfig:
+      service:
+        name: {{- .Values.webhook.name -}}
+        namespace: default
+        port: 443
+        path: "/validate"
+      caBundle: {{ required "please rerun helm install" .Values.webhook.caBundle }}
+    rules:
+      - operations:
+          - "CREATE"
+          - "UPDATE"
+        apiGroups:
+          - "akri.sh"
+        apiVersions:
+          - "v0"
+        resources:
+          - "configurations"
+        scope: "*"
+    admissionReviewVersions:
+      - v1
+    sideEffects: None
+{{- end }}

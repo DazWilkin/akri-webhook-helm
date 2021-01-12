@@ -1,0 +1,7 @@
+apiVersion: v2
+name: akri-webhook
+description: A Helm chart for Arki ValidatingAdmissionWebhook for Configurations
+
+type: application
+version: 0.0.1
+appVersion: 0.0.1

@@ -1,0 +1,15 @@
+rbac:
+  enabled: true
+
+webhook:
+  enabled: true
+  name: akri-webhook
+  caBundle: null
+  image:
+    repository: ghcr.io/deislabs/akri/webhook
+    tag: null
+    pullPolicy: Always
+  onlyOnControlPlane: false
+  allowOnControlPlane: true
+  linuxOnly: true
+  nodeSelectors: {}
