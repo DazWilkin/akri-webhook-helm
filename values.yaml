@@ -1,3 +1,5 @@
+imagePullSecrets: []
+
 rbac:
   enabled: true
 
