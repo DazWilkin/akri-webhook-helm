@@ -2,19 +2,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{- .Values.webhook.name -}}
+  name: {{ .Values.webhook.name }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{- .Values.webhook.name -}}
+      app: {{ .Values.webhook.name }}
   template:
     metadata:
       labels:
-        app: {{- .Values.webhook.name -}}
+        app: {{ .Values.webhook.name }}
     spec:
       {{- if .Values.rbac.enabled }}
-      serviceAccountName: {{- .Values.webhook.name -}}
+      serviceAccountName: {{ .Values.webhook.name }}
       {{- end }}
       containers:
         - name: webhook
@@ -45,7 +45,7 @@ spec:
       volumes:
         - name: secrets
           secret:
-            secretName: {{- .Values.webhook.name -}}
+            secretName: {{ .Values.webhook.name }}
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}

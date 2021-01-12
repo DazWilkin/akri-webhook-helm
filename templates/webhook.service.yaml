@@ -2,10 +2,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{- .Values.webhook.name -}}
+  name: {{ .Values.webhook.name }}
 spec:
   selector:
-    app: {{- .Values.webhook.name -}}
+    app: {{ .Values.webhook.name }}
   ports:
     - name: http
       port: 443

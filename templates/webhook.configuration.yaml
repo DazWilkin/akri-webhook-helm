@@ -2,12 +2,12 @@
 apiVersion: admissionregistration.k8s.io/v1
 kind: ValidatingWebhookConfiguration
 metadata:
-  name: {{- .Values.webhook.name -}}
+  name: {{ .Values.webhook.name }}
 webhooks:
-  - name: {{- .Values.webhook.name -}}.default.svc
+  - name: {{ .Values.webhook.name }}.default.svc
     clientConfig:
       service:
-        name: {{- .Values.webhook.name -}}
+        name: {{ .Values.webhook.name }}
         namespace: default
         port: 443
         path: "/validate"
