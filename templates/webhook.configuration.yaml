@@ -17,9 +17,9 @@ webhooks:
           - "CREATE"
           - "UPDATE"
         apiGroups:
-          - "akri.sh"
+          - {{ .Values.crds.group }}
         apiVersions:
-          - "v0"
+          - {{ .Values.crds.version }}
         resources:
           - "configurations"
         scope: "*"

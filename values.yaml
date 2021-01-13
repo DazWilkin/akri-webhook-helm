@@ -1,5 +1,9 @@
 imagePullSecrets: []
 
+crds:
+  group: akri.sh
+  version: v0
+
 rbac:
   enabled: true
 
