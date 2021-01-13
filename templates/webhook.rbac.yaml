@@ -12,13 +12,9 @@ items:
   metadata:
     name: {{ .Values.webhook.name }}
   rules:
-  - apiGroups:
-    - "akri.sh"
-    resources:
-    - configurations
-    verbs:
-    - create
-    - update
+  - apiGroups: [{{ .Values.crds.group | quote }}]
+    resources: ["configurations"]
+    verbs: ["create","update"]
 - apiVersion: rbac.authorization.k8s.io/v1
   kind: ClusterRoleBinding
   metadata:
