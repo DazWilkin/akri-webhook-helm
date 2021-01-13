@@ -8,21 +8,22 @@ items:
     name: {{ .Values.webhook.name }}
     namespace: {{ .Release.Namespace }}
 - apiVersion: rbac.authorization.k8s.io/v1
-  kind: ClusterRole
+  kind: Role
   metadata:
     name: {{ .Values.webhook.name }}
+    namespace: {{ .Release.Namespace }}
   rules:
-  - apiGroups: [{{ .Values.crds.group | quote }}]
-    resources: ["configurations"]
-    verbs: ["create","update"]
+  - apiGroups: [""]
+    resources: ["pods"]
+    verbs: ["get"]
 - apiVersion: rbac.authorization.k8s.io/v1
-  kind: ClusterRoleBinding
+  kind: RoleBinding
   metadata:
     name: {{ .Values.webhook.name }}
     namespace: {{ .Release.Namespace }}
   roleRef:
-    apiGroup: ''
-    kind: ClusterRole
+    apiGroup: rbac.authorization.k8s.io
+    kind: Role
     name: {{ .Values.webhook.name }}
   subjects:
   - kind: ServiceAccount
